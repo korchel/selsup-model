@@ -1,5 +1,7 @@
 ![gif](model.gif)
 
+[deploy](https://selsup-model-6woq6902s-korchels-projects.vercel.app/) 
+
 
 ## Available Scripts
 

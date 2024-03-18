@@ -36,7 +36,7 @@ class ModelEditor extends React.Component<Props, State> {
   }
 
   getModel() {
-    return this.state.paramValues;
+    return {...this.props.model, paramValues: this.state.paramValues}
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>, id: number, type: string) => {
