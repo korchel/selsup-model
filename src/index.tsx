@@ -25,6 +25,8 @@ interface State {
   paramValues: ParamValue[];
 }
 
+type ModelValueType = string | number | Array<number | string>;
+
 class ModelEditor extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -48,16 +50,16 @@ class ModelEditor extends React.Component<Props, State> {
     const paramValues = this.state.paramValues;
     const currentParam = paramValues.find((param) => param.paramId === id);
     if (!currentParam) {
-      this.setState({ paramValues: [...paramValues, { paramId: id, value: newValue as string | number | Array<number | string> }] });
+      this.setState({ paramValues: [...paramValues, { paramId: id, value: newValue as ModelValueType }] });
     } else {
-      const newParamValues = paramValues.map((value) => value.paramId === id ? { ...value, value: newValue as string | number | Array<number | string> } : value)
+      const newParamValues = paramValues.map((value) => value.paramId === id ? { ...value, value: newValue as ModelValueType } : value)
       this.setState({ paramValues: newParamValues });
     }
   }
 
   render() {
     const requiredParams = this.props.params;
-    const paramValues = this.state.paramValues;
+    const { paramValues } = this.state;
     return (
       <div style={{ width: '400px' } }>
         {requiredParams.map(requiredParam => {
